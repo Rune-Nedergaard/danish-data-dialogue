@@ -70,19 +70,19 @@ export default function MessageInput() {
   };
 
   return (
-    <div className="border-t border-danish-gray-200 dark:border-danish-gray-700 pt-4 pb-6 px-4 bg-danish-white dark:bg-danish-gray-900">
-      <div className="max-w-4xl mx-auto">
+    <div className="border border-danish-gray-200 dark:border-danish-gray-800 bg-white dark:bg-danish-gray-900 rounded-xl shadow-sm">
+      <div className="p-4">
         {/* Suggested queries */}
         <div className="mb-4 overflow-x-auto pb-2 flex items-center space-x-2">
-          <div className="flex-none flex items-center justify-center bg-danish-gray-100 dark:bg-danish-gray-800 rounded-full p-1 mr-1">
-            <Sparkles className="h-4 w-4 text-danish-blue" />
+          <div className="flex-none flex items-center justify-center bg-danish-gray-50 dark:bg-danish-gray-800 rounded-full p-1 mr-1">
+            <Sparkles className="h-3.5 w-3.5 text-danish-blue" />
           </div>
           {suggestedQueries.map((query) => (
             <button
               key={query.id}
               onClick={() => handleSuggestedQuery(query)}
               disabled={isProcessing}
-              className="flex-none px-3 py-1.5 text-sm bg-danish-gray-100 hover:bg-danish-gray-200 dark:bg-danish-gray-800 dark:hover:bg-danish-gray-700 rounded-full transition-colors duration-200 whitespace-nowrap"
+              className="flex-none px-3 py-1.5 text-xs text-danish-gray-700 dark:text-danish-gray-300 bg-danish-gray-50 hover:bg-danish-gray-100 dark:bg-danish-gray-800 dark:hover:bg-danish-gray-700 rounded-full transition-colors duration-200 whitespace-nowrap"
             >
               {query.text}
             </button>
@@ -100,7 +100,7 @@ export default function MessageInput() {
             onCompositionEnd={() => setIsComposing(false)}
             placeholder={language === 'en' ? 'Ask about Danish statistics...' : 'Spørg om dansk statistik...'}
             disabled={isProcessing}
-            className="min-h-24 resize-none rounded-xl py-3 pr-20 focus-visible:ring-danish-blue focus-visible:ring-opacity-50 transition-all duration-200 input-field-focus"
+            className="min-h-24 resize-none rounded-lg py-3 pr-20 border-danish-gray-200 dark:border-danish-gray-700 focus-visible:ring-danish-blue focus-visible:ring-opacity-50 transition-all duration-200 input-field-focus text-danish-gray-800 dark:text-danish-gray-200 placeholder:text-danish-gray-400 dark:placeholder:text-danish-gray-500"
           />
           
           <div className="absolute right-3 bottom-3 flex items-center space-x-2">
@@ -110,19 +110,19 @@ export default function MessageInput() {
               size="icon"
               onClick={handleClearChat}
               disabled={isProcessing}
-              className="h-9 w-9 rounded-lg"
+              className="h-8 w-8 rounded-md text-danish-gray-500 hover:text-danish-gray-700 dark:text-danish-gray-400 dark:hover:text-danish-gray-200"
             >
-              <Eraser className="h-5 w-5" />
+              <Eraser className="h-4 w-4" />
               <span className="sr-only">{language === 'en' ? 'Clear chat' : 'Ryd chat'}</span>
             </Button>
             
             <Button
               type="submit"
               disabled={isProcessing || !inputValue.trim()}
-              className="h-9 w-9 rounded-lg bg-danish-blue hover:bg-danish-blue-dark transition-colors duration-200"
+              className="h-8 rounded-md bg-danish-blue hover:bg-danish-blue-dark transition-colors duration-200 px-3 py-1"
             >
-              <SendHorizonal className="h-5 w-5" />
-              <span className="sr-only">{language === 'en' ? 'Send message' : 'Send besked'}</span>
+              <SendHorizonal className="h-4 w-4 mr-1" />
+              <span className="text-xs">{language === 'en' ? 'Send' : 'Send'}</span>
             </Button>
           </div>
         </form>

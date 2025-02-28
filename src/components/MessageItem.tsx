@@ -35,16 +35,16 @@ const MessageItem: React.FC<MessageItemProps> = ({ message }) => {
   return (
     <div
       className={cn(
-        "w-full max-w-4xl mx-auto animate-slide-in transition-all duration-300",
-        isSystemMessage ? "opacity-90" : "opacity-100"
+        "w-full max-w-3xl mx-auto mb-6 animate-slide-in transition-all duration-300",
+        isSystemMessage ? "opacity-95" : "opacity-100"
       )}
     >
       <div
         className={cn(
-          "rounded-xl p-4 subtle-border",
+          "rounded-xl p-4",
           isSystemMessage 
-            ? "bg-white dark:bg-danish-gray-800" 
-            : "bg-danish-blue-light bg-opacity-10 dark:bg-danish-blue-dark dark:bg-opacity-30"
+            ? "bg-white dark:bg-danish-gray-800 shadow-sm border border-danish-gray-100 dark:border-danish-gray-700" 
+            : "bg-danish-blue-light bg-opacity-5 dark:bg-danish-blue-dark dark:bg-opacity-10 border border-danish-blue-light border-opacity-10 dark:border-danish-blue-dark dark:border-opacity-20"
         )}
       >
         {/* Message content */}
@@ -55,39 +55,39 @@ const MessageItem: React.FC<MessageItemProps> = ({ message }) => {
             <Skeleton className="h-4 w-2/3" />
           </div>
         ) : (
-          <div className="text-balance">{message.content}</div>
+          <div className="text-balance text-danish-gray-800 dark:text-danish-gray-200 leading-relaxed">{message.content}</div>
         )}
         
         {/* Visualizations */}
         {message.visualizations && message.visualizations.length > 0 && (
-          <div className="mt-4 space-y-6">
+          <div className="mt-6 space-y-6">
             {message.visualizations.map((visualization) => (
-              <div key={visualization.id} className="visualization-appear bg-danish-white dark:bg-danish-gray-700 rounded-lg p-4 subtle-border">
-                <div className="flex justify-between items-center mb-2">
+              <div key={visualization.id} className="visualization-appear bg-white dark:bg-danish-gray-800 rounded-lg p-4 shadow-sm border border-danish-gray-100 dark:border-danish-gray-700">
+                <div className="flex justify-between items-center mb-4">
                   <h3 className="font-medium text-danish-gray-900 dark:text-danish-gray-100">
                     {visualization.title}
                   </h3>
                   <div className="flex items-center space-x-1">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
-                          <Download className="h-4 w-4" />
+                        <Button variant="ghost" size="icon" className="h-7 w-7 text-danish-gray-500 hover:text-danish-gray-700 dark:text-danish-gray-400 dark:hover:text-danish-gray-200">
+                          <Download className="h-3.5 w-3.5" />
                           <span className="sr-only">{language === 'en' ? 'Export' : 'Eksporter'}</span>
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="w-36">
-                        <DropdownMenuItem>PNG</DropdownMenuItem>
-                        <DropdownMenuItem>SVG</DropdownMenuItem>
-                        <DropdownMenuItem>PDF</DropdownMenuItem>
+                        <DropdownMenuItem className="text-xs cursor-pointer">PNG</DropdownMenuItem>
+                        <DropdownMenuItem className="text-xs cursor-pointer">SVG</DropdownMenuItem>
+                        <DropdownMenuItem className="text-xs cursor-pointer">PDF</DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                     <Button 
                       variant="ghost" 
                       size="icon"
-                      className="h-8 w-8"
+                      className="h-7 w-7 text-danish-gray-500 hover:text-danish-gray-700 dark:text-danish-gray-400 dark:hover:text-danish-gray-200"
                       onClick={() => setExpandedViz(visualization.id)}
                     >
-                      <Maximize2 className="h-4 w-4" />
+                      <Maximize2 className="h-3.5 w-3.5" />
                       <span className="sr-only">{language === 'en' ? 'Expand' : 'Udvid'}</span>
                     </Button>
                   </div>
@@ -116,22 +116,22 @@ const MessageItem: React.FC<MessageItemProps> = ({ message }) => {
         
         {/* Data Table */}
         {message.dataTable && (
-          <div className="mt-4 visualization-appear bg-danish-white dark:bg-danish-gray-700 rounded-lg p-4 subtle-border">
-            <div className="flex justify-between items-center mb-2">
+          <div className="mt-6 visualization-appear bg-white dark:bg-danish-gray-800 rounded-lg p-4 shadow-sm border border-danish-gray-100 dark:border-danish-gray-700">
+            <div className="flex justify-between items-center mb-4">
               <h3 className="font-medium text-danish-gray-900 dark:text-danish-gray-100">
                 {message.dataTable.title}
               </h3>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="h-8">
-                    <Download className="h-4 w-4 mr-2" />
+                  <Button variant="ghost" size="sm" className="h-7 text-xs text-danish-gray-500 hover:text-danish-gray-700 dark:text-danish-gray-400 dark:hover:text-danish-gray-200">
+                    <Download className="h-3.5 w-3.5 mr-1.5" />
                     <span>{language === 'en' ? 'Export' : 'Eksporter'}</span>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-36">
-                  <DropdownMenuItem>CSV</DropdownMenuItem>
-                  <DropdownMenuItem>Excel</DropdownMenuItem>
-                  <DropdownMenuItem>JSON</DropdownMenuItem>
+                  <DropdownMenuItem className="text-xs cursor-pointer">CSV</DropdownMenuItem>
+                  <DropdownMenuItem className="text-xs cursor-pointer">Excel</DropdownMenuItem>
+                  <DropdownMenuItem className="text-xs cursor-pointer">JSON</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
