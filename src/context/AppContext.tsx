@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Language, Message, SuggestedQuery } from '@/types';
+import { v4 as uuidv4 } from 'uuid';
+import { Language, Message, SuggestedQuery, ChartType } from '@/types';
 import { toast } from 'sonner';
 
 interface AppContextProps {
@@ -81,7 +82,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const addMessage = async (message: Omit<Message, 'id' | 'timestamp'>) => {
     const newMessage: Message = {
       ...message,
-      id: Date.now().toString(),
+      id: uuidv4(),
       timestamp: new Date(),
     };
 
