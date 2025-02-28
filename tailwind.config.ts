@@ -19,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'dstext': ['"Open Sans"', 'system-ui', 'sans-serif'],
+				'dsheading': ['"Roboto"', 'system-ui', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -67,9 +71,17 @@ export default {
 					red: '#C8102E',
 					white: '#FFFFFF',
 					blue: {
-						light: '#0EA5E9',
-						DEFAULT: '#0284c7',
-						dark: '#0c4a6e'
+						DEFAULT: '#0068B4', // Danmarks Statistik blue
+						50: '#F0F7FF',
+						100: '#E0F0FF',
+						200: '#B8DCFF',
+						300: '#8FC2FF',
+						400: '#5A9CE6',
+						500: '#0068B4',
+						600: '#0055A4',
+						700: '#003D80',
+						800: '#002C66',
+						900: '#001F4D',
 					},
 					gray: {
 						50: '#F8FAFC',
