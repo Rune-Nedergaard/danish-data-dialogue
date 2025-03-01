@@ -64,10 +64,10 @@ const MessageItem: React.FC<MessageItemProps> = ({ message }) => {
             {message.visualizations.map((visualization) => (
               <div key={visualization.id} className="visualization-appear bg-white dark:bg-danish-gray-800 rounded-lg p-4 shadow-sm border border-danish-gray-100 dark:border-danish-gray-700">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="font-medium text-danish-gray-900 dark:text-danish-gray-100">
+                  <h3 className="font-medium text-danish-gray-900 dark:text-danish-gray-100 pr-4 truncate">
                     {visualization.title}
                   </h3>
-                  <div className="flex items-center space-x-1">
+                  <div className="flex items-center space-x-1 flex-shrink-0">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon" className="h-7 w-7 text-danish-gray-500 hover:text-danish-gray-700 dark:text-danish-gray-400 dark:hover:text-danish-gray-200">

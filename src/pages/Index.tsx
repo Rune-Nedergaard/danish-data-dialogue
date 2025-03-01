@@ -36,7 +36,7 @@ const ExplorerSidebar = () => {
   const { language } = useAppContext();
   
   return (
-    <Sidebar>
+    <Sidebar className="max-w-[240px] w-[240px]">
       <SidebarHeader>
         <div className="flex items-center space-x-2 p-4">
           <Bot className="h-6 w-6 text-danish-blue" />

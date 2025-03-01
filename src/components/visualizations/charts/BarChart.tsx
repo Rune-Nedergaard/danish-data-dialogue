@@ -24,15 +24,21 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
       })
     : [];
   
-  // Create bars for each dataset
-  const bars = data.datasets ? data.datasets.map((dataset: any, index: number) => (
-    <Bar
-      key={index}
-      dataKey={dataset.label || `Value ${index + 1}`}
-      fill={dataset.backgroundColor || `#${((1 << 24) * Math.random() | 0).toString(16)}`}
-      isAnimationActive={true}
-    />
-  )) : [];
+  // Create bars for each dataset with blue colors
+  const bars = data.datasets ? data.datasets.map((dataset: any, index: number) => {
+    // Use Danish blue color palette
+    const blueColors = ['#0068B4', '#5A9CE6', '#8FC2FF', '#B8DCFF', '#E0F0FF'];
+    const barColor = dataset.backgroundColor || blueColors[index % blueColors.length];
+    
+    return (
+      <Bar
+        key={index}
+        dataKey={dataset.label || `Value ${index + 1}`}
+        fill={barColor}
+        isAnimationActive={true}
+      />
+    );
+  }) : [];
 
   // Style configuration
   const axisTextColor = isDarkMode ? '#CBD5E1' : '#64748B';
