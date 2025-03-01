@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { AppProvider } from '@/context/AppContext';
 import { ThemeProvider } from '@/hooks/use-theme';
@@ -92,18 +93,18 @@ const Index = () => {
             <AppHeader />
             <div className="flex flex-1 overflow-hidden">
               <ExplorerSidebar />
-              <main className="flex-1 overflow-hidden flex flex-col w-full mx-auto px-4 lg:px-8 max-w-7xl md:ml-[240px]">
-                <div className="py-6 flex-1 overflow-hidden flex flex-col">
+              <main className="flex-1 overflow-hidden flex flex-col w-full px-4 lg:px-8 md:ml-[240px]">
+                <div className="py-6 flex-1 overflow-hidden flex flex-col w-full">
                   <MessageList />
                 </div>
-                <div className="pb-6">
+                <div className="pb-6 w-full">
                   <MessageInput />
                 </div>
                 <ActionButtons />
               </main>
             </div>
             <footer className="bg-danish-blue-50 py-3 border-t border-danish-blue-100 md:ml-[240px]">
-              <div className="max-w-7xl mx-auto px-4 lg:px-8 text-sm text-danish-blue-600">
+              <div className="w-full px-4 lg:px-8 text-sm text-danish-blue-600">
                 <p>© {new Date().getFullYear()} Danish Statistics Explorer</p>
               </div>
             </footer>
