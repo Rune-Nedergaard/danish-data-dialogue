@@ -70,7 +70,7 @@ const Index = () => {
             <AppHeader />
             <div className="flex flex-1 overflow-hidden">
               <ExplorerSidebar />
-              <main className="flex-1 overflow-hidden flex flex-col w-full lg:px-8 md:ml-[240px] mx-0 px-[14px]">
+              <main className="flex-1 overflow-hidden flex flex-col w-full lg:px-8 md:ml-[240px] px-[14px] mx-0">
                 <div className="py-6 flex-1 overflow-hidden flex flex-col w-full">
                   <MessageList />
                 </div>
