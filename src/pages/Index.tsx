@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { AppProvider } from '@/context/AppContext';
 import { ThemeProvider } from '@/hooks/use-theme';
@@ -36,7 +35,7 @@ const ExplorerSidebar = () => {
   const { language } = useAppContext();
   
   return (
-    <Sidebar className="max-w-[240px] w-[240px]">
+    <Sidebar className="fixed left-0 max-w-[240px] w-[240px] h-full z-10">
       <SidebarHeader>
         <div className="flex items-center space-x-2 p-4">
           <Bot className="h-6 w-6 text-danish-blue" />
@@ -93,7 +92,7 @@ const Index = () => {
             <AppHeader />
             <div className="flex flex-1 overflow-hidden">
               <ExplorerSidebar />
-              <main className="flex-1 overflow-hidden flex flex-col w-full mx-auto px-4 lg:px-8 max-w-7xl">
+              <main className="flex-1 overflow-hidden flex flex-col w-full mx-auto px-4 lg:px-8 max-w-7xl md:ml-[240px]">
                 <div className="py-6 flex-1 overflow-hidden flex flex-col">
                   <MessageList />
                 </div>
@@ -103,7 +102,7 @@ const Index = () => {
                 <ActionButtons />
               </main>
             </div>
-            <footer className="bg-danish-blue-50 py-3 border-t border-danish-blue-100">
+            <footer className="bg-danish-blue-50 py-3 border-t border-danish-blue-100 md:ml-[240px]">
               <div className="max-w-7xl mx-auto px-4 lg:px-8 text-sm text-danish-blue-600">
                 <p>© {new Date().getFullYear()} Danish Statistics Explorer</p>
               </div>
