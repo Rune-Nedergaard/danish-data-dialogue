@@ -1,6 +1,6 @@
 
 import { useAppContext } from '@/context/AppContext';
-import { Globe, Crown, HelpCircle } from 'lucide-react';
+import { Globe, Bot, HelpCircle } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
@@ -21,7 +21,7 @@ export default function AppHeader() {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="h-10 w-10 flex items-center justify-center text-danish-blue">
-              <Crown className="h-9 w-9" />
+              <Bot className="h-9 w-9" />
             </div>
             <div>
               <h1 className="text-xl font-medium tracking-tight text-danish-blue font-dstext">
