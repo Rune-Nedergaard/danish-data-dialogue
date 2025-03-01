@@ -24,7 +24,7 @@ const AppHeader = () => {
           <div className="flex items-center">
             <Bot className="h-6 w-6 text-danish-blue mr-2" />
           </div>
-          <p className="text-sm text-danish-blue-600 font-dstext pl-2 md:pl-0 text-left">
+          <p className="text-danish-blue-600 font-dstext pl-2 md:pl-0 text-left mx-[200px] text-lg font-medium">
             {language === 'en' ? 'Danish Statistics Explorer' : 'Dansk Statistik Udforsker'}
           </p>
         </div>
