@@ -11,6 +11,8 @@ interface AppContextProps {
   language: Language;
   setLanguage: (lang: Language) => void;
   suggestedQueries: SuggestedQuery[];
+  selectedCategories: string[];
+  toggleCategorySelection: (category: string) => void;
 }
 
 const AppContext = createContext<AppContextProps | undefined>(undefined);
@@ -44,6 +46,16 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     { id: '4', text: 'Visualize immigration patterns by region', category: 'Demographics' },
     { id: '5', text: 'Show me education level by age group', category: 'Education' },
   ]);
+
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+  const toggleCategorySelection = (category: string) => {
+    setSelectedCategories(prev => 
+      prev.includes(category) 
+        ? prev.filter(cat => cat !== category) 
+        : [...prev, category]
+    );
+  };
 
   // Add a welcome message when the component mounts
   useEffect(() => {
@@ -152,6 +164,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         language,
         setLanguage,
         suggestedQueries,
+        selectedCategories,
+        toggleCategorySelection,
       }}
     >
       {children}

@@ -26,6 +26,7 @@ export interface DataTable {
   title: string;
   headers: string[];
   rows: any[][];
+  categories?: Record<string, string[]>; // Maps row IDs to their categories
   pagination?: {
     currentPage: number;
     totalPages: number;

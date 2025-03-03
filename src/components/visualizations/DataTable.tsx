@@ -1,16 +1,18 @@
+
 import React, { useState } from 'react';
 import { DataTable as DataTableType } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ChevronLeft, ChevronRight, Search, SortAsc, SortDesc } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Search, SortAsc, SortDesc, Filter } from 'lucide-react';
 import { useAppContext } from '@/context/AppContext';
+import { Badge } from '@/components/ui/badge';
 
 interface DataTableProps {
   dataTable: DataTableType;
 }
 
 const DataTable: React.FC<DataTableProps> = ({ dataTable }) => {
-  const { language } = useAppContext();
+  const { language, selectedCategories } = useAppContext();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortColumn, setSortColumn] = useState<number | null>(null);
@@ -22,11 +24,21 @@ const DataTable: React.FC<DataTableProps> = ({ dataTable }) => {
   const totalPages = Math.ceil(totalRows / pageSize);
   
   // Handle search filtering
-  const filteredRows = dataTable.rows.filter(row => 
-    row.some(cell => 
+  const filteredRows = dataTable.rows.filter(row => {
+    // First apply category filtering if any categories are selected
+    if (selectedCategories.length > 0 && dataTable.categories) {
+      const rowCategories = dataTable.categories[row[0]] || []; // Assuming first column is the ID
+      const hasMatchingCategory = selectedCategories.some(selectedCat => {
+        return rowCategories.some(rowCat => rowCat.includes(selectedCat));
+      });
+      if (!hasMatchingCategory) return false;
+    }
+    
+    // Then apply search filtering
+    return row.some(cell => 
       cell.toString().toLowerCase().includes(searchQuery.toLowerCase())
-    )
-  );
+    );
+  });
   
   // Handle sorting
   const sortedRows = [...filteredRows].sort((a, b) => {
@@ -74,8 +86,8 @@ const DataTable: React.FC<DataTableProps> = ({ dataTable }) => {
   
   return (
     <div>
-      {/* Search input */}
-      <div className="mb-3">
+      {/* Search input and category badges */}
+      <div className="mb-3 space-y-2">
         <div className="relative">
           <Search className="h-4 w-4 absolute left-3 top-3 text-danish-gray-400" />
           <Input
@@ -86,6 +98,35 @@ const DataTable: React.FC<DataTableProps> = ({ dataTable }) => {
             className="pl-10"
           />
         </div>
+        
+        {selectedCategories.length > 0 && (
+          <div className="flex flex-wrap gap-2 items-center">
+            <Filter className="h-4 w-4 text-danish-gray-500" />
+            <span className="text-xs text-danish-gray-500">
+              {language === 'en' ? 'Filtered by:' : 'Filtreret efter:'}
+            </span>
+            {selectedCategories.map(category => {
+              const [mainCat, subCat] = category.split('/');
+              return (
+                <Badge key={category} variant="outline" className="bg-danish-blue-50 text-danish-blue-700 border-danish-blue-200">
+                  {language === 'en' ? subCat : (
+                    mainCat === 'demographics' ? 'Demografi' :
+                    mainCat === 'economy' ? 'Økonomi' :
+                    mainCat === 'education' ? 'Uddannelse' :
+                    mainCat === 'health' ? 'Sundhed' : 'Miljø'
+                  )}: {language === 'en' ? subCat : (
+                    // Very simple translation for demo purposes
+                    subCat === 'Population' ? 'Befolkning' :
+                    subCat === 'GDP' ? 'BNP' :
+                    subCat === 'Primary Education' ? 'Grundskole' :
+                    subCat === 'Healthcare System' ? 'Sundhedssystem' :
+                    subCat === 'Emissions' ? 'Emissioner' : subCat
+                  )}
+                </Badge>
+              );
+            })}
+          </div>
+        )}
       </div>
       
       {/* Data table */}
